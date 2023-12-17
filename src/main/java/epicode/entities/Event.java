@@ -46,6 +46,14 @@ public class Event {
         this.numeroMassimoPartecipanti = numeroMassimoPartecipanti;
     }
 
+    public List<Partecipazione> getPartecipazioneList() {
+        return partecipazioneList;
+    }
+
+    public List<Location> getLocations() {
+        return locations;
+    }
+
     public String getTitolo() {
         return titolo;
     }
