@@ -2,6 +2,8 @@ package epicode.entities;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "events")
@@ -25,6 +27,13 @@ public class Event {
 
     @Column(name="numero_massimo_partecipanti")
     private int numeroMassimoPartecipanti;
+
+    @ManyToMany(mappedBy = "eventList")
+    private List<Partecipazione> partecipazioneList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "event")
+    private List<Location> locations = new ArrayList<>();
+
 
     public Event() {
     }
