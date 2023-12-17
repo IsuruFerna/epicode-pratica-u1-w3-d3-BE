@@ -16,9 +16,10 @@ public class Location {
 
     public Location() {
     }
-    public Location(String nome, String citta) {
+    public Location(String nome, String citta, Event event) {
         this.nome = nome;
         this.citta = citta;
+        this.event = event;
     }
 
     public String getNome() {

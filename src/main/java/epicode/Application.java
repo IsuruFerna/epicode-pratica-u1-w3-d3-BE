@@ -3,17 +3,19 @@ package epicode;
 import com.github.javafaker.Faker;
 import epicode.dao.EventsDAO;
 import epicode.dao.LocationDAO;
+import epicode.dao.PartecipazioneDAO;
 import epicode.dao.PersonaDao;
-import epicode.entities.Event;
-import epicode.entities.EventType;
-import epicode.entities.Location;
-import epicode.entities.Persona;
+import epicode.entities.*;
+import org.hibernate.mapping.Array;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.function.Supplier;
 import java.util.logging.SimpleFormatter;
 
@@ -25,6 +27,7 @@ public class Application {
         EventsDAO event = new EventsDAO(em);
         PersonaDao person = new PersonaDao(em);
         LocationDAO location = new LocationDAO(em);
+        PartecipazioneDAO partecipazione = new PartecipazioneDAO(em);
 
         Faker faker = new Faker();
 
@@ -44,8 +47,16 @@ public class Application {
         Persona p1 = new Persona(faker.name().firstName(), faker.name().lastName(), email.get(), birthDate.get(), "M");
         person.save((p1));
 
-        Location l1 = new Location("nice event", "somewhere");
+//        save location
+        Event e1 = event.findById(3);
+        Location l1 = new Location("nice event", "somewhere", e1);
         location.save(l1);
+
+        Event e5 = event.findById(5);
+        Persona pd = person.findById(29);
+        Partecipazione partecipa = new Partecipazione(PartecipazioneStato.CONFERMATA, pd, e5);
+        partecipazione.save(partecipa);
+
 
         // ******************* Save *************
 //        event.save(event1);
