@@ -1,28 +1,25 @@
 package epicode.entities;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
-@Table(name = "locations")
 public class Location {
 	@Id
 	@GeneratedValue
 	private long id;
-
 	private String nome;
 	private String citta;
 
+	@ManyToOne
+	@JoinColumn(name = "events_id")
+	private Event event;
+
 	public Location() {
 	}
-
-	public Location(String nome, String citta) {
+	public Location(String nome, String citta, Event event) {
 		this.nome = nome;
 		this.citta = citta;
-	}
-
-	public Long getId() {
-		return id;
+		this.event = event;
 	}
 
 	public String getNome() {
@@ -41,8 +38,11 @@ public class Location {
 		this.citta = citta;
 	}
 
-	@Override
-	public String toString() {
-		return "Location [id=" + id + ", nome=" + nome + ", citta=" + citta + "]";
+	public Event getEvent() {
+		return event;
+	}
+
+	public void setEvent(Event event) {
+		this.event = event;
 	}
 }

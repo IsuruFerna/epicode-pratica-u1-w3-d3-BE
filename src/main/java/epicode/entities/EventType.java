@@ -1,5 +1,5 @@
 package epicode.entities;
 
-public enum TipoEvento {
+public enum EventType {
     PUBBLICO, PRIVATO
 }

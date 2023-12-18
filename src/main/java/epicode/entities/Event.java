@@ -2,47 +2,57 @@ package epicode.entities;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "eventi")
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-//@MappedSuperclass
-@DiscriminatorColumn(name = "type_event")
-@NamedQuery(name = "findByName", query = "SELECT a FROM Event a WHERE a.titolo = :titolo")
-public abstract class Event {
+@Table(name = "events")
+public class Event {
     @Id
     @GeneratedValue
     private long id;
 
+    @Column(name = "titolo") // just to customize column name and are not necessary at all
     private String titolo;
+
+    @Column(name="data_evento")
     private LocalDate dataEvento;
+
+    @Column
     private String descrizione;
+
+    @Column(name="tipo_evento")
     @Enumerated(EnumType.STRING)
-    private TipoEvento tipoEvento;
+    private EventType tipoEvento;
+
+    @Column(name="numero_massimo_partecipanti")
     private int numeroMassimoPartecipanti;
 
-    @ManyToOne
-    @JoinColumn(name = "luogo_evento_id")
-    private Location luogoEvento;
+    @ManyToMany(mappedBy = "eventList")
+    private List<Partecipazione> partecipazioneList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "evento", cascade = CascadeType.REMOVE)
-    private List<Attendance> listaPartecipazioni;
+    @OneToMany(mappedBy = "event")
+    private List<Location> locations = new ArrayList<>();
+
+
 
     public Event() {
     }
 
-    public Event(String titolo, LocalDate dataEvento, String descrizione, TipoEvento tipoEvento, int numeroMassimoPartecipanti, Location location) {
+    public Event(String titolo, String dataEvento, String descrizione, EventType tipoEvento, int numeroMassimoPartecipanti) {
         this.titolo = titolo;
-        this.dataEvento = dataEvento;
+        this.dataEvento = LocalDate.parse(dataEvento);
         this.descrizione = descrizione;
         this.tipoEvento = tipoEvento;
         this.numeroMassimoPartecipanti = numeroMassimoPartecipanti;
-        this.luogoEvento = location;
     }
 
-    public long getId() {
-        return id;
+    public List<Partecipazione> getPartecipazioneList() {
+        return partecipazioneList;
+    }
+
+    public List<Location> getLocations() {
+        return locations;
     }
 
     public String getTitolo() {
@@ -69,11 +79,11 @@ public abstract class Event {
         this.descrizione = descrizione;
     }
 
-    public TipoEvento getTipoEvento() {
+    public EventType getTipoEvento() {
         return tipoEvento;
     }
 
-    public void setTipoEvento(TipoEvento tipoEvento) {
+    public void setTipoEvento(EventType tipoEvento) {
         this.tipoEvento = tipoEvento;
     }
 
@@ -83,30 +93,5 @@ public abstract class Event {
 
     public void setNumeroMassimoPartecipanti(int numeroMassimoPartecipanti) {
         this.numeroMassimoPartecipanti = numeroMassimoPartecipanti;
-    }
-
-    public Location getLuogoEvento() {
-        return luogoEvento;
-    }
-
-    public void setLuogoEvento(Location luogoEvento) {
-        this.luogoEvento = luogoEvento;
-    }
-
-    public List<Attendance> getListaPartecipazioni() {
-        return listaPartecipazioni;
-    }
-
-    @Override
-    public String toString() {
-        return "Evento{" +
-                "id=" + id +
-                ", titolo='" + titolo + '\'' +
-                ", dataEvento=" + dataEvento +
-                ", descrizione='" + descrizione + '\'' +
-                ", tipoEvento=" + tipoEvento +
-                ", numeroMassimoPartecipanti=" + numeroMassimoPartecipanti +
-                ", location=" + luogoEvento +
-                '}';
     }
 }

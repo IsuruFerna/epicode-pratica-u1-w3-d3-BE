@@ -2,8 +2,6 @@ package epicode.entities;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import java.time.LocalDate;
 import java.util.StringJoiner;
 
@@ -19,8 +17,8 @@ public class PartitaDiCalcio extends Event{
     public  PartitaDiCalcio() {
     }
 
-    public PartitaDiCalcio(String titolo, LocalDate dataEvento, String descrizione, TipoEvento tipoEvento, int numeroMassimoPartecipanti, String squadraDiCasa, String squadraOspite, int numeroGolSquadraDiCasa, int numeroGolSquadraOspite) {
-        super(titolo, dataEvento, descrizione, tipoEvento, numeroMassimoPartecipanti);
+    public PartitaDiCalcio(String titolo, String dataEvento, String descrizione, EventType eventType, int numeroMassimoPartecipanti, String squadraDiCasa, String squadraOspite, int numeroGolSquadraDiCasa, int numeroGolSquadraOspite) {
+        super(titolo, dataEvento, descrizione, eventType, numeroMassimoPartecipanti);
         this.squadraDiCasa = squadraDiCasa;
         this.squadraOspite = squadraOspite;
         this.numeroGolSquadraDiCasa = numeroGolSquadraDiCasa;

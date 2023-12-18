@@ -4,7 +4,8 @@ import com.github.javafaker.Faker;
 import epicode.dao.EventsDAO;
 import epicode.dao.LocationDAO;
 import epicode.dao.PartecipazioneDAO;
-import epicode.dao.PersonaDao;
+import epicode.dao.PersonaDAO;
+import epicode.dao.PersonaDAO;
 import epicode.entities.*;
 import org.hibernate.mapping.Array;
 
@@ -25,7 +26,7 @@ public class Application {
     public static void main(String[] args) {
         EntityManager em = emf.createEntityManager();
         EventsDAO event = new EventsDAO(em);
-        PersonaDao person = new PersonaDao(em);
+        PersonaDAO person = new PersonaDAO(em);
         LocationDAO location = new LocationDAO(em);
         PartecipazioneDAO partecipazione = new PartecipazioneDAO(em);
 
