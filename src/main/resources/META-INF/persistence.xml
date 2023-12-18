@@ -11,8 +11,12 @@
             <property name="hibernate.default" value="org.hibernate.dialect.PostgreSQL82Dialect"/>
             <property name="hibernate.hdm2ddl.auto" value="update"/>-->
 
+            <!-- controls DB -->
             <property name="hibernate.hbm2ddl.auto" value="update"/>
+
+            <!-- convert to sql -->
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL82Dialect"/>
+
             <property name="hibernate.default_schema" value="public"/>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/u1w3d4"/>

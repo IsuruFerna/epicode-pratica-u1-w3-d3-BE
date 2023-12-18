@@ -7,6 +7,7 @@ import java.util.List;
 @Entity
 @Table(name = "eventi")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+//@MappedSuperclass
 @DiscriminatorColumn(name = "type_event")
 @NamedQuery(name = "findByName", query = "SELECT a FROM Event a WHERE a.titolo = :titolo")
 public abstract class Event {

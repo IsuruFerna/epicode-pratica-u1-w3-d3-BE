@@ -1,6 +1,7 @@
 package epicode.dao;
 
 import epicode.entities.Event;
+import epicode.entities.PartitaDiCalcio;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -12,7 +13,6 @@ public class EventsDAO {
         this.em = em;
     }
 
-
     public void save(Event evento) {
         try {
             EntityTransaction t = em.getTransaction();
@@ -20,6 +20,18 @@ public class EventsDAO {
             em.persist(evento);
             t.commit();
             System.out.println("Evento - " + evento.getTitolo() + " - creato!");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void savePartitaDiCalcio(PartitaDiCalcio partitaDiCalcio) {
+        try {
+            EntityTransaction t = em.getTransaction();
+            t.begin();
+            em.persist(partitaDiCalcio);
+            t.commit();
+            System.out.println("Partita di Calcio - " + partitaDiCalcio.getTitolo() + " - creato!");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -45,4 +57,6 @@ public class EventsDAO {
             System.out.println(e.getMessage());
         }
     }
+
+
 }

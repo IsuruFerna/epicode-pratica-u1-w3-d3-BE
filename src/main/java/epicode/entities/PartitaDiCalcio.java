@@ -19,8 +19,8 @@ public class PartitaDiCalcio extends Event{
     public  PartitaDiCalcio() {
     }
 
-    public PartitaDiCalcio(String titolo, LocalDate dataEvento, String descrizione, TipoEvento tipoEvento, int numeroMassimoPartecipanti, Location location, String squadraDiCasa, String squadraOspite, int numeroGolSquadraDiCasa, int numeroGolSquadraOspite) {
-        super(titolo, dataEvento, descrizione, tipoEvento, numeroMassimoPartecipanti, location);
+    public PartitaDiCalcio(String titolo, LocalDate dataEvento, String descrizione, TipoEvento tipoEvento, int numeroMassimoPartecipanti, String squadraDiCasa, String squadraOspite, int numeroGolSquadraDiCasa, int numeroGolSquadraOspite) {
+        super(titolo, dataEvento, descrizione, tipoEvento, numeroMassimoPartecipanti);
         this.squadraDiCasa = squadraDiCasa;
         this.squadraOspite = squadraOspite;
         this.numeroGolSquadraDiCasa = numeroGolSquadraDiCasa;
