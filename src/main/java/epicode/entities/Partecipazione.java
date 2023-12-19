@@ -15,7 +15,7 @@ public class Partecipazione {
     private PartecipazioneStato stato;
 
     @ManyToOne
-    @JoinColumn(name= "persona_id")
+    @JoinColumn(name= "persona_id", nullable = false)
     private Persona persona;
 
     @ManyToMany

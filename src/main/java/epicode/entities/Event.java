@@ -7,7 +7,16 @@ import java.util.List;
 
 @Entity
 @Table(name = "events")
-public class Event {
+@Inheritance(strategy = InheritanceType.JOINED)
+@NamedQuery(
+        name = "getConcertiInStreaming",
+        query = "SELECT c FROM Concerto c WHERE c.inStraming = :is_streaming"
+)
+@NamedQuery(
+        name = "getConcertiPerGenre",
+        query = "SELECT g FROM Concerto g WHERE g.genere = :genere"
+)
+public abstract class Event {
     @Id
     @GeneratedValue
     private long id;
@@ -29,10 +38,10 @@ public class Event {
     private int numeroMassimoPartecipanti;
 
     @ManyToMany(mappedBy = "eventList")
-    private List<Partecipazione> partecipazioneList = new ArrayList<>();
+    private List<Partecipazione> partecipazioneList;
 
     @OneToMany(mappedBy = "event")
-    private List<Location> locations = new ArrayList<>();
+    private List<Location> locations;
 
 
 

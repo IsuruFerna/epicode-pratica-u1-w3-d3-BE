@@ -1,10 +1,14 @@
 package epicode.dao;
 
+import epicode.entities.Concerto;
 import epicode.entities.Event;
 import epicode.entities.EventType;
+import epicode.entities.GenreMusic;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 public class EventsDAO {
 
@@ -40,5 +44,17 @@ public class EventsDAO {
         } else {
             System.out.println("Event with id:" + id + " not found!");
         }
+    }
+
+    public List<Concerto> getConcertiInStreaming(boolean isStreaming) {
+        TypedQuery<Concerto> getIsStreaming = em.createNamedQuery("getConcertiInStreaming", Concerto.class);
+        getIsStreaming.setParameter("is_streaming", isStreaming);
+        return getIsStreaming.getResultList();
+    };
+
+    public List<Concerto> getConcertiPerGenere(GenreMusic genreMusic) {
+        TypedQuery<Concerto> getGenere = em.createNamedQuery("getConcertiPerGenre", Concerto.class);
+        getGenere.setParameter("genere", genreMusic);
+        return getGenere.getResultList();
     }
 }

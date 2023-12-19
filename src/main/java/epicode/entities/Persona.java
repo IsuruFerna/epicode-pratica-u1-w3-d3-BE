@@ -1,5 +1,7 @@
 package epicode.entities;
 
+import com.sun.istack.Nullable;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -18,11 +20,11 @@ public class Persona {
 	private String sesso;
 
 	@OneToMany(mappedBy = "persona")
-	private List<Partecipazione> partecipazioneList = new ArrayList<>();
+	private List<Partecipazione> partecipazioneList;
 
 	@ManyToOne
-	@JoinColumn(name="set_atleti", nullable = false)
-	private GaraDiAtletica atleti;
+	@JoinColumn(name="gara_di_atlatica_id")
+	private GaraDiAtletica garaDiAtletica;
 
 	public Persona() {}
 
